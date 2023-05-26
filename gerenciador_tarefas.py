@@ -11,49 +11,38 @@ lista_de_tarefas: list[dict[str]] = [
 
 
 def adicionar_tarefa(prioridade: bool, tarefa: str):
-    """
-    Adiciona uma tarefa na lista de tarefas
-    Lança exceções caso a prioridade seja inválida ou a tarefa já exista
+    
+    nova_tarefa = {"prioridade": prioridade, "tarefa": tarefa}
 
-    Args:
-        prioridade (bool): True se a tarefa tem prioridade alta, False caso contrário
-        tarefa (str): string que representa a tarefa
-    """
-    # TODO: coloque o código aqui para adicionar um tarefa na lista
-    # Caso a prioridade não seja True ou False, levante uma exceção
-    # do tipo ValueError com a mensagem "Prioridade inválida"
-    # Caso a tarefa já exista na lista, levante uma exceção do tipo ValueError
-    # com a mensagem "Tarefa já existe"
-    raise NotImplementedError("Adicionar tarefas não implementado")
+
+    # isinstanceof(prioridade, bool)
+    if prioridade is not True and prioridade is not False:
+        raise ValueError('Prioridade inválida')
+    
+    if encontra_tarefa(tarefa) == True:
+        raise ValueError('Tarefa já existe')
+    else:
+        lista_de_tarefas.append(nova_tarefa)
+
+
+            
 
 
 def remove_tarefas(índices: tuple[int]):
-    """
-    Remove várias tarefas da lista de tarefas de uma vez, dado uma tupla de índices
-    Lança exceções caso a tarefa não exista
-
-    Args:
-        índices (tuple[int]): tupla de inteiros que representam os índices das tarefas
-                             que devem ser removidas da lista.
-    """
+    lista_de_tarefas.remove(lista_de_tarefas[índices])
+    
     # TODO: coloque o código aqui para remover um tarefa na lista
     # Caso a tarefa não exista na lista, levante uma exceção do tipo ValueError
     # com a mensagem "Tarefa não existe"
-    raise NotImplementedError("Remover tarefas não implementado")
 
 
-def encontra_tarefa(tarefa: str) -> int:
-    """
-    Encontra o índice de uma tarefa na lista de tarefas
-    Lança exceções caso a tarefa não exista
+def encontra_tarefa(dicionario: str) -> int:
+    
 
-    Args:
-        tarefa (str): string que representa a tarefa
-    """
-    # TODO: coloque o código aqui para encontrar um tarefa na lista
-    # Caso a tarefa não exista na lista, levante uma exceção do tipo ValueError
-    # com a mensagem "Tarefa não existe"
-    raise NotImplementedError("Encontrar tarefas não implementado")
+    for tarefa in lista_de_tarefas:
+        if tarefa["tarefa"] == dicionario:
+            return True
+    return False    
 
 
 def ordena_por_prioridade():
