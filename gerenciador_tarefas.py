@@ -29,15 +29,21 @@ def adicionar_tarefa(prioridade: bool, tarefa: str):
 
 
 def remove_tarefas(índices: tuple[int]):
-    lista_de_tarefas.remove(lista_de_tarefas[índices])
-    
+
+    if len(índices) > len(lista_de_tarefas) - 1:
+        raise ValueError('indice fora da lista')
+    else:
+        if len(lista_de_tarefas) > 0:
+            for indice in índices:
+                lista_de_tarefas.remove(lista_de_tarefas[indice])
+        else: 
+            raise ValueError('tarefa não encontrada')
     # TODO: coloque o código aqui para remover um tarefa na lista
     # Caso a tarefa não exista na lista, levante uma exceção do tipo ValueError
     # com a mensagem "Tarefa não existe"
 
 
 def encontra_tarefa(dicionario: str) -> int:
-    
 
     for tarefa in lista_de_tarefas:
         if tarefa["tarefa"] == dicionario:
