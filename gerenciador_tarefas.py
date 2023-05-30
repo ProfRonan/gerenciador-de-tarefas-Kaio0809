@@ -34,8 +34,8 @@ def remove_tarefas(índices: tuple[int]):
         raise ValueError('indice fora da lista')
     else:
         if len(lista_de_tarefas) > 0:
-            for indice in índices:
-                lista_de_tarefas.remove(lista_de_tarefas[indice])
+            for i in range(len(índices)-1, -1, -1):
+                lista_de_tarefas.pop(índices[i])
         else: 
             raise ValueError('tarefa não encontrada')
     # TODO: coloque o código aqui para remover um tarefa na lista
