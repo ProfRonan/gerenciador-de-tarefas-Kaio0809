@@ -19,7 +19,7 @@ def adicionar_tarefa(prioridade: bool, tarefa: str):
     if prioridade is not True and prioridade is not False:
         raise ValueError('Prioridade inválida')
     
-    if encontra_tarefa(tarefa) == True:
+    if encontra_tarefa(tarefa) is True:
         raise ValueError('Tarefa já existe')
     else:
         lista_de_tarefas.append(nova_tarefa)
@@ -38,9 +38,7 @@ def remove_tarefas(índices: tuple[int]):
                 lista_de_tarefas.pop(índices[i])
         else: 
             raise ValueError('tarefa não encontrada')
-    # TODO: coloque o código aqui para remover um tarefa na lista
-    # Caso a tarefa não exista na lista, levante uma exceção do tipo ValueError
-    # com a mensagem "Tarefa não existe"
+    
 
 
 def encontra_tarefa(dicionario: str) -> int:
@@ -52,19 +50,21 @@ def encontra_tarefa(dicionario: str) -> int:
 
 
 def ordena_por_prioridade():
-    """
-    Ordena a lista de tarefas por prioridade com as tarefas prioritárias no
-    início da lista, seguidas pelas tarefas não prioritárias.
-    As tarefas prioritárias devem ser ordenadas por ordem alfabética e as
-    tarefas não prioritárias devem ser ordenadas por ordem alfabética.
-    """
-    # TODO: coloque o código aqui para ordenar a lista de tarefas por prioridade
-    # com as tarefas prioritárias no início da lista, seguidas pelas tarefas
-    # não prioritárias.
-    # As tarefas prioritárias devem ser ordenadas por ordem alfabética e as
-    # tarefas não prioritárias devem ser ordenadas por ordem alfabética.
-    raise NotImplementedError("Ordenar tarefas não implementado")
-
+    com_prioridade = []
+    sem_prioridade = []
+    global lista_de_tarefas
+    for i in lista_de_tarefas:
+        if i['prioridade'] == 0:
+            sem_prioridade.append(i)
+        else:
+            com_prioridade.append(i)
+    com_prioridade = sorted(com_prioridade, key=lambda d: d['tarefa']) 
+    sem_prioridade = sorted(sem_prioridade, key=lambda d: d['tarefa']) 
+    lista_de_tarefas = []
+    for i in com_prioridade:
+        lista_de_tarefas.append(i)
+    for i in sem_prioridade:
+        lista_de_tarefas.append(i)
 
 def get_lista_de_tarefas():
     """
